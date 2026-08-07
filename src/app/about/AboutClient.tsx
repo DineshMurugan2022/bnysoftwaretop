@@ -13,14 +13,6 @@ const SiLinkedin = ({ size = 24 }: { size?: number }) => (
   </svg>
 );
 import { useRef } from "react";
-import { useTeam } from "@/hooks/queries/useTeam";
-
-const DEFAULT_TEAM = [
-  { id: 1, name: "Babu", role: "CEO & Founder", bio: "Former VP of Engineering with 15+ years of enterprise software experience.", image: "/babu.jpg" },
-  { id: 2, name: "Mani", role: "CTO & Co-Founder", bio: "Architect of scalable cloud systems handling millions of daily transactions.", image: "/mani.jpg" },
-  { id: 3, name: "Dinesh", role: "Lead Designer", bio: "Award-winning UX designer obsessed with creating frictionless digital experiences.", image: "/dinesh.jpg" },
-  { id: 4, name: "Alice Johnson", role: "Head of Engineering", bio: "Open source contributor and AI enthusiast leading our machine learning initiatives.", image: "/images/team/designer.png" }
-];
 
 const MILESTONES = [
   { year: "2018", title: "The Foundation", desc: "Founded with a vision to revolutionize retail technology." },
@@ -81,9 +73,6 @@ function Timeline() {
 }
 
 export default function About() {
-  const { data: teamMembers } = useTeam();
-  const teamToDisplay = teamMembers && teamMembers.length > 0 ? teamMembers : DEFAULT_TEAM;
-
   return (
     <div className="flex flex-col min-h-screen bg-background">
       {/* Hero Section */}
@@ -209,59 +198,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Team Section */}
-      <section className="py-32 bg-background relative">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-display font-bold text-foreground mb-4">Meet The Team</h2>
-            <p className="text-foreground/60 max-w-xl mx-auto mb-4">The visionaries and creators driving innovation across our enterprise products.</p>
-            <div className="w-24 h-1 bg-brand-accent mx-auto rounded-full"></div>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {teamToDisplay.map((member, index) => (
-              <motion.div 
-                key={member.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="group relative rounded-3xl overflow-hidden border border-white/10 bg-surface shadow-2xl flex flex-col hover:border-brand-accent/50 transition-all duration-300"
-              >
-                {/* Full Image Display */}
-                <div className="relative w-full h-[420px] overflow-hidden bg-black/60">
-                  <img 
-                    src={member.image} 
-                    alt={member.name} 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                  />
-                  {/* Subtle dark gradient overlay at bottom for readability */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90 group-hover:opacity-95 transition-opacity"></div>
-
-                  <div className="absolute bottom-0 left-0 right-0 p-6 flex flex-col justify-end">
-                    <span className="text-brand-accent font-bold text-xs uppercase tracking-widest mb-1">{member.role}</span>
-                    <h3 className="text-2xl font-bold text-white mb-2 font-display">{member.name}</h3>
-                    <p className="text-white/80 text-xs leading-relaxed mb-4 line-clamp-3 font-light">
-                      {member.bio}
-                    </p>
-                    
-                    <div className="flex gap-3 pt-2 border-t border-white/10">
-                      <a href="#" className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-brand-accent hover:text-black transition-all duration-300">
-                        <SiLinkedin size={16} />
-                      </a>
-                      <a href="#" className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-brand-accent hover:text-black transition-all duration-300">
-                        <SiX size={16} />
-                      </a>
-                      <a href="#" className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-brand-accent hover:text-black transition-all duration-300">
-                        <SiGithub size={16} />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
       <section className="py-20 relative bg-surface-2 border-t border-white/5">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
