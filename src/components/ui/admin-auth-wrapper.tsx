@@ -117,6 +117,7 @@ export function AdminLayoutWrapper({ children }: { children: React.ReactNode }) 
     { name: "Products", href: "/admin/products", icon: <Package className="w-5 h-5" /> },
     { name: "Categories", href: "/admin/product-categories", icon: <Tags className="w-5 h-5" /> },
     { name: "Blog", href: "/admin/blog", icon: <BookOpen className="w-5 h-5" /> },
+    { name: "Team", href: "/admin/team", icon: <Users className="w-5 h-5" /> },
     { name: "Testimonials", href: "/admin/testimonials", icon: <MessageSquareQuote className="w-5 h-5" /> },
     { name: "Pricing", href: "/admin/pricing", icon: <BadgeDollarSign className="w-5 h-5" /> },
     { name: "Industries", href: "/admin/industries", icon: <Building2 className="w-5 h-5" /> },

@@ -13,12 +13,13 @@ const SiLinkedin = ({ size = 24 }: { size?: number }) => (
   </svg>
 );
 import { useRef } from "react";
+import { useTeam } from "@/hooks/queries/useTeam";
 
-const TEAM = [
-  { name: "Jane Doe", role: "CEO & Founder", bio: "Former VP of Engineering at RetailTech with 15+ years of enterprise software experience.", image: "/images/team/ceo.png" },
-  { name: "John Smith", role: "CTO", bio: "Architect of scalable cloud systems handling millions of daily transactions.", image: "/images/team/cto.png" },
-  { name: "Alice Johnson", role: "Lead Designer", bio: "Award-winning UX designer obsessed with creating frictionless digital experiences.", image: "/images/team/designer.png" },
-  { name: "Bob Williams", role: "Head of Engineering", bio: "Open source contributor and AI enthusiast leading our machine learning initiatives.", image: "/images/team/engineer.png" }
+const DEFAULT_TEAM = [
+  { id: 1, name: "Babu", role: "CEO & Founder", bio: "Former VP of Engineering with 15+ years of enterprise software experience.", image: "/babu.jpg" },
+  { id: 2, name: "Mani", role: "CTO & Co-Founder", bio: "Architect of scalable cloud systems handling millions of daily transactions.", image: "/mani.jpg" },
+  { id: 3, name: "Dinesh", role: "Lead Designer", bio: "Award-winning UX designer obsessed with creating frictionless digital experiences.", image: "/dinesh.jpg" },
+  { id: 4, name: "Alice Johnson", role: "Head of Engineering", bio: "Open source contributor and AI enthusiast leading our machine learning initiatives.", image: "/images/team/designer.png" }
 ];
 
 const MILESTONES = [
@@ -80,6 +81,9 @@ function Timeline() {
 }
 
 export default function About() {
+  const { data: teamMembers } = useTeam();
+  const teamToDisplay = teamMembers && teamMembers.length > 0 ? teamMembers : DEFAULT_TEAM;
+
   return (
     <div className="flex flex-col min-h-screen bg-background">
       {/* Hero Section */}
@@ -213,7 +217,7 @@ export default function About() {
             <div className="w-24 h-1 bg-brand-accent mx-auto rounded-full"></div>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {TEAM.map((member, index) => (
+            {teamToDisplay.map((member, index) => (
               <div key={member.name} className="group perspective-1000 h-[350px]">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -225,12 +229,10 @@ export default function About() {
                   {/* Front of Card */}
                   <div className="absolute inset-0 backface-hidden bg-surface border border-white/5 p-8 rounded-3xl overflow-hidden flex flex-col items-center justify-center text-center shadow-lg">
                     <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-brand-accent/10 to-transparent"></div>
-                    <div className="w-32 h-32 mb-6 rounded-full overflow-hidden border-2 border-brand-accent/30 shadow-[0_0_20px_rgba(163,230,53,0.15)] relative z-10">
-                      <Image 
+                    <div className="w-32 h-32 mb-6 rounded-full overflow-hidden border-2 border-brand-accent/30 shadow-[0_0_20px_rgba(163,230,53,0.15)] relative z-10 bg-black/40">
+                      <img 
                         src={member.image} 
                         alt={member.name} 
-                        width={128} 
-                        height={128} 
                         className="object-cover w-full h-full"
                       />
                     </div>
