@@ -185,7 +185,7 @@ export default function AdminTeam() {
                   >
                     {/* Render Image Thumbnail */}
                     <td className="p-4 align-middle">
-                      <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-brand-accent/40 bg-black/40 shadow-sm relative shrink-0">
+                      <div className="w-20 h-24 rounded-xl overflow-hidden border-2 border-brand-accent/40 bg-black/60 shadow-md relative shrink-0">
                         {member.image ? (
                           <img
                             src={member.image}
@@ -319,7 +319,7 @@ export default function AdminTeam() {
 
                     {/* Live Image Preview Component */}
                     <div className="flex items-center gap-4 bg-background/50 border border-border p-4 rounded-xl">
-                      <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-brand-accent bg-black/60 relative shrink-0 shadow-md flex items-center justify-center">
+                      <div className="w-28 h-36 rounded-xl overflow-hidden border-2 border-brand-accent bg-black/60 relative shrink-0 shadow-md flex items-center justify-center">
                         {formData.image ? (
                           <img
                             src={formData.image}
@@ -334,9 +334,9 @@ export default function AdminTeam() {
                         )}
                       </div>
                       <div className="flex-1 space-y-1">
-                        <div className="text-xs font-bold uppercase tracking-wider text-brand-accent">Live Preview</div>
-                        <p className="text-xs text-foreground/70 truncate">{formData.image || "No image selected"}</p>
-                        <p className="text-[11px] text-foreground/40">This image will be displayed on the admin panel and public site.</p>
+                        <div className="text-xs font-bold uppercase tracking-wider text-brand-accent">Full Image Live Preview</div>
+                        <p className="text-xs text-foreground/70 truncate font-mono">{formData.image || "No image selected"}</p>
+                        <p className="text-[11px] text-foreground/40">This image will be displayed on the admin panel and public site without flip card restrictions.</p>
                       </div>
                     </div>
 

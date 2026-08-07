@@ -214,54 +214,50 @@ export default function About() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-display font-bold text-foreground mb-4">Meet The Team</h2>
+            <p className="text-foreground/60 max-w-xl mx-auto mb-4">The visionaries and creators driving innovation across our enterprise products.</p>
             <div className="w-24 h-1 bg-brand-accent mx-auto rounded-full"></div>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {teamToDisplay.map((member, index) => (
-              <div key={member.name} className="group perspective-1000 h-[350px]">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="w-full h-full relative preserve-3d group-hover:rotate-y-180 transition-transform duration-700 ease-out cursor-pointer"
-                >
-                  {/* Front of Card */}
-                  <div className="absolute inset-0 backface-hidden bg-surface border border-white/5 p-8 rounded-3xl overflow-hidden flex flex-col items-center justify-center text-center shadow-lg">
-                    <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-brand-accent/10 to-transparent"></div>
-                    <div className="w-32 h-32 mb-6 rounded-full overflow-hidden border-2 border-brand-accent/30 shadow-[0_0_20px_rgba(163,230,53,0.15)] relative z-10 bg-black/40">
-                      <img 
-                        src={member.image} 
-                        alt={member.name} 
-                        className="object-cover w-full h-full"
-                      />
-                    </div>
-                    <h3 className="text-2xl font-bold text-foreground">{member.name}</h3>
-                    <p className="text-brand-accent font-medium mt-1 uppercase tracking-wider text-xs">{member.role}</p>
-                  </div>
+              <motion.div 
+                key={member.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="group relative rounded-3xl overflow-hidden border border-white/10 bg-surface shadow-2xl flex flex-col hover:border-brand-accent/50 transition-all duration-300"
+              >
+                {/* Full Image Display */}
+                <div className="relative w-full h-[420px] overflow-hidden bg-black/60">
+                  <img 
+                    src={member.image} 
+                    alt={member.name} 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  />
+                  {/* Subtle dark gradient overlay at bottom for readability */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90 group-hover:opacity-95 transition-opacity"></div>
 
-                  {/* Back of Card */}
-                  <div className="absolute inset-0 backface-hidden rotate-y-180 bg-brand-accent border border-brand-accent p-8 rounded-3xl overflow-hidden flex flex-col items-center justify-center text-center shadow-[0_0_30px_rgba(163,230,53,0.2)]">
-                    <div className="w-12 h-12 mb-4 bg-black/10 rounded-full flex items-center justify-center">
-                       <Quote className="w-6 h-6 text-black/40" />
-                    </div>
-                    <h3 className="text-xl font-bold text-black mb-2">{member.name}</h3>
-                    <p className="text-black/80 font-medium text-sm leading-relaxed mb-8">{member.bio}</p>
+                  <div className="absolute bottom-0 left-0 right-0 p-6 flex flex-col justify-end">
+                    <span className="text-brand-accent font-bold text-xs uppercase tracking-widest mb-1">{member.role}</span>
+                    <h3 className="text-2xl font-bold text-white mb-2 font-display">{member.name}</h3>
+                    <p className="text-white/80 text-xs leading-relaxed mb-4 line-clamp-3 font-light">
+                      {member.bio}
+                    </p>
                     
-                    <div className="flex gap-4 mt-auto">
-                      <a href="#" className="w-10 h-10 rounded-full bg-black/10 flex items-center justify-center text-black hover:bg-black hover:text-brand-accent transition-colors">
-                        <SiLinkedin size={18} />
+                    <div className="flex gap-3 pt-2 border-t border-white/10">
+                      <a href="#" className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-brand-accent hover:text-black transition-all duration-300">
+                        <SiLinkedin size={16} />
                       </a>
-                      <a href="#" className="w-10 h-10 rounded-full bg-black/10 flex items-center justify-center text-black hover:bg-black hover:text-brand-accent transition-colors">
-                        <SiX size={18} />
+                      <a href="#" className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-brand-accent hover:text-black transition-all duration-300">
+                        <SiX size={16} />
                       </a>
-                      <a href="#" className="w-10 h-10 rounded-full bg-black/10 flex items-center justify-center text-black hover:bg-black hover:text-brand-accent transition-colors">
-                        <SiGithub size={18} />
+                      <a href="#" className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-brand-accent hover:text-black transition-all duration-300">
+                        <SiGithub size={16} />
                       </a>
                     </div>
                   </div>
-                </motion.div>
-              </div>
+                </div>
+              </motion.div>
             ))}
           </div>
         </div>
